@@ -1,0 +1,24 @@
+
+% Load the Random Forest model
+load('C:\\Users\\salem\\Downloads\\forestModel.mat', 'forest_mdl');
+givemethenum=50;
+% Verify if there are at least 50 rows in the dataset
+if size(X, 1) >= givemethenum
+    % Define the indices of features used in the model training
+    feature_indices = [1, 3, 4, 5, 6, 7, 8, 10, 11];  % Example indices based on the trained model
+
+    % Extract the 50th row for prediction, selecting only the relevant features
+    patientData = X(givemethenum, feature_indices);
+
+    % Ensure that patientData is formatted as a 1xN matrix where N is the number of features
+    patientData = reshape(patientData, 1, []);  
+
+    % Predict the outcome using the loaded Random Forest model
+    patientPrediction = predict(forest_mdl, patientData);
+
+    % Output the predicted outcome for the 50th patient
+    fprintf('The predicted outcome for the 50th patient is: %s\n', string(patientPrediction));
+else
+    % Output an error message if there are not enough rows
+    fprintf('Not enough data for prediction.\n');
+end

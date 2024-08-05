@@ -1,4 +1,4 @@
-% Read the dataset
+% Import data
 data = readtable('C:Users\salem\OneDrive\Desktop\AIproject\dataAI.csv');
 
 % Remove any rows with missing values
